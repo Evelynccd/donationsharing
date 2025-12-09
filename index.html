@@ -1,57 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Donation Sharing Platform — Morandi Blue</title>
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Donation Sharing Platform</title>
+<link rel="stylesheet" href="style.css" />
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
+<header class="hero">
+<div class="hero-content">
+<h1>Donation Sharing Platform</h1>
+<p>A warm place where unused items find new life ✨</p>
+<a href="#donate" class="hero-btn">Start Donating</a>
+</div>
+</header>
 
-<!-- NAV -->
-<nav class="nav">
-<div class="container nav-inner">
-<a class="logo" href="#">🧸 Donation</a>
-<ul class="nav-links">
+<nav class="navbar">
+<ul>
 <li><a href="#items">Items</a></li>
 <li><a href="#donate">Donate</a></li>
 <li><a href="#about">About</a></li>
 </ul>
-</div>
 </nav>
 
-<!-- HERO -->
-<header class="hero">
-<div class="container hero-grid">
-<div class="hero-text">
-<h1>Share what you don't need — <span class="accent">bring joy</span> to others</h1>
-<p class="lead">A community-driven donation platform that helps unused items find new homes. Simple, safe, and kind.</p>
-<div class="hero-actions">
-<a href="#donate" class="btn primary">Donate an Item</a>
-<a href="#items" class="btn ghost">Browse Items</a>
+<main>
+<section id="items" class="section">
+<h2 class="section-title">Available Items</h2>
+<div class="filters">
+<button class="filter active" data-category="All">All</button>
+<button class="filter" data-category="Books">Books</button>
+<button class="filter" data-category="Appliances">Appliances</button>
+<button class="filter" data-category="Apparel">Apparel</button>
+<button class="filter" data-category="Others">Others</button>
 </div>
-</div>
-<div class="hero-stats">
-<div class="stat">
-<h3 class="stat-num">1,250+</h3>
-<p class="stat-label">Items Shared</p>
-</div>
-<div class="stat">
-<h3 class="stat-num">980+</h3>
-<p class="stat-label">Matches Made</p>
-</div>
-<div class="stat">
-<h3 class="stat-num">320+</h3>
-<p class="stat-label">Active Donors</p>
-</div>
-</div>
-</div>
-</header>
+<div id="item-list" class="grid"></div>
+</section>
 
-<!-- FILTER + ITEMS -->
-<main class="container content">
-<section id="items" class="items-section">
-<div class="section-head">
-<h2>Available Items</h2>
+<section id="donate" class="section donate-section">
+<h2 class="section-title">Donate an Item</h2>
+<form id="donation-form" class="form" action="success.html">
+<div class="form-group">
+<label>Item Name *</label>
+<input required type="text" name="itemName" />
+</div>
+<div class="form-group">
+<label>Category *</label>
+<select required name="category">
+<option value="">Select</option>
+<option value="Books">Books</option>
+<option value="Appliances">Appliances</option>
+<option value="Apparel">Apparel</option>
+<option value="Others">Others</option>
+</select>
+</div>
+<div class="form-group">
+<label>Description *</label>
+<textarea required rows="4" name="description"></textarea>
 
