@@ -1,227 +1,136 @@
-/* -------------- Helper & Storage -------------- */
-const STORAGE_KEY = 'donationItems_v1';
+// =======================================================
+// 1. 圖片預覽功能 (Image Preview)
+// =======================================================
 
-function saveItems(items){
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-}
-function loadItems(){
-  const raw = localStorage.getItem(STORAGE_KEY);
-  return raw ? JSON.parse(raw) : [];
-}
-function uid(){ return 'i'+Date.now().toString(36)+Math.floor(Math.random()*900).toString(36); }
-
-/* -------------- DOM refs -------------- */
-const filters = document.querySelectorAll('.filter');
-const itemList = document.getElementById('item-list');
-const donationForm = document.getElementById('donation-form');
 const itemImageInput = document.getElementById('itemImage');
-const imagePreviewBox = document.getElementById('imagePreview');
-const modal = document.getElementById('success-modal');
-const modalClose = document.getElementById('modalClose') || document.getElementById('modalClose');
-const searchInput = document.getElementById('searchInput');
+const imagePreviewDiv = document.getElementById('imagePreview');
 
-/* -------------- Render Single Card -------------- */
-function renderCard(item){
-  const wrapper = document.createElement('div');
-  wrapper.className = 'item-card fade-in';
-  wrapper.setAttribute('data-category', item.category);
-  wrapper.setAttribute('data-id', item.id);
+if (itemImageInput && imagePreviewDiv) {
+    // 監聽檔案輸入框的 'change' 事件
+    itemImageInput.addEventListener('change', function(event) {
+        const file = event.target.files[0]; // 取得使用者選擇的第一個檔案
 
-  const tagsHtml = (item.tags || []).map(t=>`<span class="tag">${escapeHtml(t.trim())}</span>`).join(' ');
+        if (file) {
+            imagePreviewDiv.innerHTML = ''; // 清空舊的預覽
+            
+            // 檢查檔案類型是否為圖片
+            if (!file.type.startsWith('image/')) {
+                imagePreviewDiv.innerHTML = '<p class="error-text">Please upload a valid image file.</p>';
+                return;
+            }
 
-  wrapper.innerHTML = `
-    <div class="item-card-inner">
-      <div class="item-card-front">
-        <img src="${item.image}" alt="${escapeHtml(item.name)}">
-        <div class="item-info">
-          <h3>${escapeHtml(item.name)} ${item.featured?'<span style="color:#bf6b6b;font-size:.9rem"> · ★</span>':''}</h3>
-          <p>${escapeHtml(item.description).slice(0,120)}${item.description.length>120?'...':''}</p>
-          <div class="item-card-meta">
-            <small>${new Date(item.createdAt).toLocaleString()}</small>
-          </div>
-        </div>
-      </div>
-      <div class="item-card-back">
-        <h3>${escapeHtml(item.name)}</h3>
-        <small>Category: ${escapeHtml(item.category)} · Condition: ${escapeHtml(item.condition || 'Good')}</small>
-        <p style="margin-top:12px">${escapeHtml(item.description)}</p>
-        <div style="margin-top:10px">${tagsHtml}</div>
-        <div class="card-actions" style="margin-top:14px">
-          <button class="btn outline claim-btn">${item.claimed? 'Claimed' : 'Mark Claimed'}</button>
-          <button class="btn primary delete-btn">Delete</button>
-        </div>
-      </div>
-    </div>
-  `;
-
-  // actions: claim and delete
-  wrapper.querySelector('.delete-btn').addEventListener('click', ()=>{
-    deleteItem(item.id);
-  });
-  const claimBtn = wrapper.querySelector('.claim-btn');
-  claimBtn.addEventListener('click', ()=>{
-    toggleClaim(item.id);
-  });
-
-  return wrapper;
+            const reader = new FileReader();
+            
+            // 當檔案讀取完成後，建立圖片元素
+            reader.onload = function(e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.alt = "Item Preview";
+                img.classList.add('preview-image'); 
+                
+                imagePreviewDiv.appendChild(img);
+            };
+            
+            // 以 Data URL 格式開始讀取檔案
+            reader.readAsDataURL(file);
+        } else {
+            // 如果使用者取消選擇檔案，清空預覽區
+            imagePreviewDiv.innerHTML = '';
+        }
+    });
 }
 
-/* -------------- Escape HTML helper -------------- */
-function escapeHtml(str){
-  if(!str) return '';
-  return String(str).replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];});
-}
 
-/* -------------- Render list (with filters/search) -------------- */
-function renderList(filterCategory = 'All', searchTerm = ''){
-  const items = loadItems();
-  itemList.innerHTML = '';
-  const term = (searchTerm||'').trim().toLowerCase();
-  items.sort((a,b)=> b.createdAt - a.createdAt);
-  items.forEach(item=>{
-    if(filterCategory !== 'All' && item.category !== filterCategory) return;
-    if(term){
-      const hay = (item.name + ' ' + item.description + ' ' + (item.tags||[]).join(' ')).toLowerCase();
-      if(!hay.includes(term)) return;
-    }
-    const el = renderCard(item);
-    itemList.appendChild(el);
-    // fade-in visible trigger
-    setTimeout(()=> el.classList.add('visible'), 40);
-  });
-}
+// =======================================================
+// 2. 表單提交與模態視窗控制 (Form & Modal Control)
+// =======================================================
 
-/* -------------- CRUD operations -------------- */
-function addItem(item){
-  const items = loadItems();
-  items.push(item);
-  saveItems(items);
-  renderList(document.querySelector('.filter.active').dataset.category || 'All', searchInput.value);
-}
-function deleteItem(id){
-  let items = loadItems();
-  items = items.filter(i=> i.id !== id);
-  saveItems(items);
-  renderList(document.querySelector('.filter.active').dataset.category || 'All', searchInput.value);
-}
-function toggleClaim(id){
-  const items = loadItems();
-  const idx = items.findIndex(i=> i.id===id);
-  if(idx===-1) return;
-  items[idx].claimed = !items[idx].claimed;
-  saveItems(items);
-  renderList(document.querySelector('.filter.active').dataset.category || 'All', searchInput.value);
-}
-
-/* -------------- Filters UI -------------- */
-filters.forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelector('.filter.active').classList.remove('active');
-    btn.classList.add('active');
-    renderList(btn.dataset.category, searchInput.value);
-  });
-});
-
-/* -------------- Search -------------- */
-searchInput && searchInput.addEventListener('input', (e)=>{
-  const cat = document.querySelector('.filter.active').dataset.category || 'All';
-  renderList(cat, e.target.value);
-});
-
-/* -------------- Image preview (client-side) -------------- */
-itemImageInput.addEventListener('change', (e)=>{
-  const file = e.target.files[0];
-  imagePreviewBox.innerHTML = '';
-  if(!file) return;
-  const reader = new FileReader();
-  reader.onload = function(ev){
-    const img = document.createElement('img');
-    img.src = ev.target.result;
-    img.alt = 'Preview';
-    img.style.width = '160px';
-    img.style.height = '110px';
-    img.style.objectFit = 'cover';
-    img.style.borderRadius = '8px';
-    imagePreviewBox.appendChild(img);
-  };
-  reader.readAsDataURL(file);
-});
-
-/* -------------- Form submit: read image, create item, store, modal -------------- */
-donationForm.addEventListener('submit', (e)=>{
-  e.preventDefault();
-  const form = e.target;
-  const name = form.itemName.value.trim();
-  const category = form.category.value || 'Others';
-  const condition = form.condition.value || 'Good';
-  const description = form.description.value.trim();
-  const tags = (form.tags.value || '').split(',').map(t=>t.trim()).filter(Boolean);
-  const featured = form.featured.value === 'yes';
-  const file = itemImageInput.files[0];
-
-  if(!name || !description || !file){
-    alert('Please fill required fields and attach an image.');
-    return;
-  }
-
-  const reader = new FileReader();
-  reader.onload = function(ev){
-    const base64 = ev.target.result;
-    const newItem = {
-      id: uid(),
-      name, category, condition, description,
-      tags, featured, claimed: false,
-      image: base64,
-      createdAt: Date.now()
-    };
-    addItem(newItem);
-    // show modal
-    showModal();
-    form.reset();
-    imagePreviewBox.innerHTML = '';
-  };
-  reader.readAsDataURL(file);
-});
-
-/* -------------- Modal control -------------- */
-function showModal(){ modal.style.display = 'flex'; }
-function hideModal(){ modal.style.display = 'none'; }
-modal.addEventListener('click', (e)=> { if(e.target === modal) hideModal(); });
-document.addEventListener('click', (e)=>{
-  const close = e.target.closest('.modal-close');
-  if(close) hideModal();
-});
+const donationForm = document.getElementById('donation-form');
+const successModal = document.getElementById('success-modal');
+const modalClose = document.getElementById('modalClose');
 const modalBack = document.getElementById('modalBack');
-if(modalBack) modalBack.addEventListener('click', hideModal);
+const navbar = document.querySelector('.navbar');
 
-/* -------------- Scroll fade-in trigger -------------- */
-function handleFadeIn(){
-  document.querySelectorAll('.fade-in').forEach(el=>{
-    const top = el.getBoundingClientRect().top;
-    if(top < window.innerHeight * 0.85) el.classList.add('visible');
-  });
+if (donationForm && successModal && modalClose && modalBack) {
+    
+    // 處理表單提交事件
+    donationForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // 阻止表單預設提交行為 (防止頁面刷新)
+        
+        // **********************************************
+        // 實際應用中，您會在這裡執行 AJAX/Fetch 來發送數據到伺服器
+        // const formData = new FormData(donationForm);
+        // **********************************************
+        
+        // 模擬成功後的操作：
+        
+        // 1. 顯示成功模態視窗
+        successModal.style.display = 'flex'; // 使用 flex 確保居中
+        
+        // 2. 清空表單並移除圖片預覽
+        donationForm.reset(); 
+        imagePreviewDiv.innerHTML = ''; 
+    });
+
+    // 關閉模態視窗 (X 按鈕)
+    modalClose.addEventListener('click', () => {
+        successModal.style.display = 'none';
+    });
+
+    // 關閉模態視窗 (Back to site 按鈕)
+    modalBack.addEventListener('click', () => {
+        successModal.style.display = 'none';
+    });
+    
+    // 點擊視窗外部關閉模態視窗
+    window.addEventListener('click', (event) => {
+        if (event.target == successModal) {
+            successModal.style.display = 'none';
+        }
+    });
 }
-window.addEventListener('scroll', handleFadeIn);
-window.addEventListener('load', ()=> {
-  // preload demo items if none exist (optional demo)
-  if(loadItems().length === 0){
-    const demo = [
-      { id: uid(), name:'The Great Gatsby', category:'Books', condition:'Like New', description:'Classic novel by F. Scott Fitzgerald', tags:['classic','book'], featured:false, claimed:false, image: demoPlaceholder('book'), createdAt: Date.now()-1000*60*60*24 },
-      { id: uid(), name:'Blender', category:'Appliances', condition:'Lightly used', description:'500W kitchen blender in good condition', tags:['kitchen','appliance'], featured:true, claimed:false, image: demoPlaceholder('appliance'), createdAt: Date.now()-1000*60*60*12 }
-    ];
-    saveItems(demo);
-  }
-  renderList('All','');
-  handleFadeIn();
+
+// =======================================================
+// 3. 導航欄黏貼效果 (Sticky Navbar)
+// =======================================================
+
+if (navbar) {
+    const stickyPoint = navbar.offsetTop; // 導航欄距離頂部的原始位置
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY >= stickyPoint) {
+            navbar.classList.add('sticky');
+        } else {
+            navbar.classList.remove('sticky');
+        }
+    });
+}
+
+// =======================================================
+// 4. 滾動時的淡入效果 (Fade-in on Scroll)
+// =======================================================
+
+const faders = document.querySelectorAll('.fade-in');
+
+const appearOptions = {
+    threshold: 0.1, // 當元素 10% 進入視圖時觸發
+    rootMargin: "0px 0px -100px 0px" // 提前觸發 (在元素進入底部 100px 之前)
+};
+
+const appearOnScroll = new IntersectionObserver(function(
+    entries, 
+    appearOnScroll
+) {
+    entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+            return;
+        }
+        entry.target.classList.add('visible');
+        appearOnScroll.unobserve(entry.target);
+    });
+}, appearOptions);
+
+faders.forEach(fader => {
+    fader.classList.add('invisible'); // 初始設置為隱藏
+    appearOnScroll.observe(fader);
 });
-
-/* -------------- Demo placeholders (small base64 SVG) -------------- */
-function demoPlaceholder(kind){
-  if(kind==='book'){
-    const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='800' height='500'><rect width='100%' height='100%' fill='#e9e5e1'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='#b3a69f' font-size='40'>Book</text></svg>`;
-    return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
-  }
-  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='800' height='500'><rect width='100%' height='100%' fill='#e9e5e1'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='#8d8a83' font-size='40'>Item</text></svg>`;
-  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
-}
-
