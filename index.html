@@ -9,24 +9,54 @@
 </head>
 <body>
 
+<!-- ---------- Hero ---------- -->
 <header class="hero">
   <div class="hero-content">
     <h1>Donation Sharing Platform</h1>
     <p>A warm place where unused items find new life ✨</p>
     <a href="#donate" class="hero-btn">Start Donating</a>
   </div>
+  <div class="hero-bg-circle"></div>
+  <div class="hero-bg-circle hero-bg-circle2"></div>
 </header>
 
+<!-- ---------- Navbar ---------- -->
 <nav class="navbar">
   <ul>
+    <li><a href="#features">Features</a></li>
     <li><a href="#items">Items</a></li>
     <li><a href="#donate">Donate</a></li>
+    <li><a href="#stories">Stories</a></li>
     <li><a href="#about">About</a></li>
   </ul>
 </nav>
 
 <main>
-<!-- ---------- Items Section ---------- -->
+
+<!-- ---------- Features ---------- -->
+<section id="features" class="section">
+  <h2 class="section-title">Why Choose Us?</h2>
+  <div class="features-grid">
+    <div class="feature-card fade-in">
+      <h3>🌱 Reduce Waste</h3>
+      <p>Give your unused items a second life and reduce environmental waste.</p>
+    </div>
+    <div class="feature-card fade-in">
+      <h3>🤝 Help Community</h3>
+      <p>Your donation can directly support people in need in your local area.</p>
+    </div>
+    <div class="feature-card fade-in">
+      <h3>💡 Easy Process</h3>
+      <p>Quickly upload items with just a few steps and reach the right people.</p>
+    </div>
+    <div class="feature-card fade-in">
+      <h3>🔒 Safe & Trusted</h3>
+      <p>All donors and receivers are verified to ensure secure sharing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- Items ---------- -->
 <section id="items" class="section">
   <h2 class="section-title">Available Items</h2>
   <div class="filters">
@@ -39,79 +69,5 @@
   <div id="item-list" class="grid">
     <!-- Book Card -->
     <div class="item-card fade-in" data-category="Books">
-      <div class="item-card-inner">
-        <div class="item-card-front">
-          <h3>The Great Gatsby</h3>
-          <p>Classic novel</p>
-        </div>
-        <div class="item-card-back">
-          <p>Author: F. Scott Fitzgerald</p>
-          <p>Pages: 180</p>
-          <p>Condition: Like new</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Appliance Card -->
-    <div class="item-card fade-in" data-category="Appliances">
-      <div class="item-card-inner">
-        <div class="item-card-front">
-          <h3>Blender</h3>
-          <p>Kitchen appliance</p>
-        </div>
-        <div class="item-card-back">
-          <p>Brand: Philips</p>
-          <p>Power: 500W</p>
-          <p>Condition: Lightly used</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Apparel Card -->
-    <div class="item-card fade-in" data-category="Apparel">
-      <div class="item-card-inner">
-        <div class="item-card-front">
-          <h3>Winter Jacket</h3>
-          <p>Cozy & Warm</p>
-        </div>
-        <div class="item-card-back">
-          <p>Size: M</p>
-          <p>Color: Grey</p>
-          <p>Condition: Excellent</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Others Card -->
-    <div class="item-card fade-in" data-category="Others">
-      <div class="item-card-inner">
-        <div class="item-card-front">
-          <h3>Desk Lamp</h3>
-          <p>Decorative</p>
-        </div>
-        <div class="item-card-back">
-          <p>Type: LED</p>
-          <p>Height: 40cm</p>
-          <p>Condition: Good</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ---------- Donate Section ---------- -->
-<section id="donate" class="section donate-section">
-  <h2 class="section-title">Donate an Item</h2>
-  <form id="donation-form" class="form" action="success.html" method="get">
-    <div class="form-group">
-      <label>Item Name *</label>
-      <input required type="text" name="itemName">
-    </div>
-    <div class="form-group">
-      <label>Category *</label>
-      <select required name="category">
-        <option value="">Select</option>
-        <option value="Books">Books</option>
-        <option value="Appliances">Appliances</option>
-
+      <d
 
