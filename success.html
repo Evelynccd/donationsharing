@@ -1,55 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Donation Successful</title>
-<link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
-/* 單頁專用樣式覆蓋 */
-body, html {
-    height: 100%;
-    margin: 0;
-}
-.success-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100%;
-    background-color: #b3a69f;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-}
-.success-page h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-}
-.success-page p {
-    font-size: 1.2rem;
-    margin-bottom: 40px;
-}
-.success-btn {
-    padding: 12px 30px;
-    background-color: #8d8a83;
-    color: #fff;
-    border-radius: 8px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: 0.3s;
-}
-.success-btn:hover {
-    background-color: #a39e97;
-}
+  body{display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:linear-gradient(135deg,#b3a69f,#ece8e4);color:#fff}
+  .card{background:rgba(255,255,255,0.12);padding:28px;border-radius:12px;text-align:center;max-width:420px}
+  a.btn{margin-top:12px}
 </style>
 </head>
 <body>
-<div class="success-page">
-    <h1>✅ success!</h1>
-    <p>thank you 💛</p>
-    <a href="index.html" class="success-btn">回到首頁</a>
-</div>
+  <div class="card">
+    <h1>✅ 上傳成功</h1>
+    <p>感謝您捐贈物品！已加入平台清單。</p>
+    <a href="index.html" class="btn primary">回到首頁</a>
+  </div>
 </body>
 </html>
+
