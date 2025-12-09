@@ -1,60 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Donation Sharing Platform</title>
-<link rel="stylesheet" href="style.css" />
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
 <header class="hero">
-<div class="hero-content">
-<h1>Donation Sharing Platform</h1>
-<p>A warm place where unused items find new life ✨</p>
-<a href="#donate" class="hero-btn">Start Donating</a>
-</div>
+    <div class="hero-content">
+        <h1>Donation Sharing Platform</h1>
+        <p>A warm place where unused items find new life ✨</p>
+        <a href="#donate" class="hero-btn">Start Donating</a>
+    </div>
 </header>
 
 <nav class="navbar">
-<ul>
-<li><a href="#items">Items</a></li>
-<li><a href="#donate">Donate</a></li>
-<li><a href="#about">About</a></li>
-</ul>
+    <ul>
+        <li><a href="#items">Items</a></li>
+        <li><a href="#donate">Donate</a></li>
+        <li><a href="#about">About</a></li>
+    </ul>
 </nav>
 
 <main>
 <section id="items" class="section">
-<h2 class="section-title">Available Items</h2>
-<div class="filters">
-<button class="filter active" data-category="All">All</button>
-<button class="filter" data-category="Books">Books</button>
-<button class="filter" data-category="Appliances">Appliances</button>
-<button class="filter" data-category="Apparel">Apparel</button>
-<button class="filter" data-category="Others">Others</button>
-</div>
-<div id="item-list" class="grid"></div>
+    <h2 class="section-title">Available Items</h2>
+    <div class="filters">
+        <button class="filter active" data-category="All">All</button>
+        <button class="filter" data-category="Books">Books</button>
+        <button class="filter" data-category="Appliances">Appliances</button>
+        <button class="filter" data-category="Apparel">Apparel</button>
+        <button class="filter" data-category="Others">Others</button>
+    </div>
+    <div id="item-list" class="grid">
+        <div class="item-card" data-category="Books">
+            <h3>The Great Gatsby</h3>
+            <p>Classic novel by F. Scott Fitzgerald</p>
+        </div>
+        <div class="item-card" data-category="Appliances">
+            <h3>Blender</h3>
+            <p>Lightly used kitchen blender</p>
+        </div>
+        <div class="item-card" data-category="Apparel">
+            <h3>Winter Jacket</h3>
+            <p>Cozy and warm, size M</p>
+        </div>
+    </div>
 </section>
 
 <section id="donate" class="section donate-section">
-<h2 class="section-title">Donate an Item</h2>
-<form id="donation-form" class="form" action="success.html">
-<div class="form-group">
-<label>Item Name *</label>
-<input required type="text" name="itemName" />
-</div>
-<div class="form-group">
-<label>Category *</label>
-<select required name="category">
-<option value="">Select</option>
-<option value="Books">Books</option>
-<option value="Appliances">Appliances</option>
-<option value="Apparel">Apparel</option>
-<option value="Others">Others</option>
-</select>
-</div>
-<div class="form-group">
-<label>Description *</label>
-<textarea required rows="4" name="description"></textarea>
+    <h2 class="section-title">Donate an Item</h2>
+    <form id="donation-form" class="form">
+        <div class="form-group">
+            <label>Item Name *</label>
+            <input required type="text" name="itemName">
+        </div>
+        <div class="form-group">
+            <label>Category *</label>
+            <select required name="category">
+                <option value="">Select</option>
+                <option value="Books">Books</option>
+                <option value="Appliances">Appliances</option>
+                <option value="Apparel">Apparel</option>
+                <option value="Others">Others</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Description *</label>
+            <textarea required rows="4" name="description"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Donate</button>
+    </form>
+    <div id="success-message">✅ success!!!</div>
+</section>
+
+<section id="about" class="section">
+    <h2 class="section-title">About Us</h2>
+    <p style="text-align:center; max-width:600px; margin:auto; line-height:1.6;">
+        Our platform connects donors with those in need. By sharing unused items, you give them a second life while helping your community. 💛
+    </p>
+</section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
 
