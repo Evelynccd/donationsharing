@@ -10,83 +10,108 @@
 <body>
 
 <header class="hero">
-    <div class="hero-content">
-        <h1>Donation Sharing Platform</h1>
-        <p>A warm place where unused items find new life ✨</p>
-        <a href="#donate" class="hero-btn">Start Donating</a>
-    </div>
+  <div class="hero-content">
+    <h1>Donation Sharing Platform</h1>
+    <p>A warm place where unused items find new life ✨</p>
+    <a href="#donate" class="hero-btn">Start Donating</a>
+  </div>
 </header>
 
 <nav class="navbar">
-    <ul>
-        <li><a href="#items">Items</a></li>
-        <li><a href="#donate">Donate</a></li>
-        <li><a href="#about">About</a></li>
-    </ul>
+  <ul>
+    <li><a href="#items">Items</a></li>
+    <li><a href="#donate">Donate</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
 </nav>
 
 <main>
+<!-- ---------- Items Section ---------- -->
 <section id="items" class="section">
-    <h2 class="section-title">Available Items</h2>
-    <div class="filters">
-        <button class="filter active" data-category="All">All</button>
-        <button class="filter" data-category="Books">Books</button>
-        <button class="filter" data-category="Appliances">Appliances</button>
-        <button class="filter" data-category="Apparel">Apparel</button>
-        <button class="filter" data-category="Others">Others</button>
+  <h2 class="section-title">Available Items</h2>
+  <div class="filters">
+    <button class="filter active" data-category="All">All</button>
+    <button class="filter" data-category="Books">Books</button>
+    <button class="filter" data-category="Appliances">Appliances</button>
+    <button class="filter" data-category="Apparel">Apparel</button>
+    <button class="filter" data-category="Others">Others</button>
+  </div>
+  <div id="item-list" class="grid">
+    <!-- Book Card -->
+    <div class="item-card fade-in" data-category="Books">
+      <div class="item-card-inner">
+        <div class="item-card-front">
+          <h3>The Great Gatsby</h3>
+          <p>Classic novel</p>
+        </div>
+        <div class="item-card-back">
+          <p>Author: F. Scott Fitzgerald</p>
+          <p>Pages: 180</p>
+          <p>Condition: Like new</p>
+        </div>
+      </div>
     </div>
-    <div id="item-list" class="grid">
-        <div class="item-card" data-category="Books">
-            <h3>The Great Gatsby</h3>
-            <p>Classic novel by F. Scott Fitzgerald</p>
+
+    <!-- Appliance Card -->
+    <div class="item-card fade-in" data-category="Appliances">
+      <div class="item-card-inner">
+        <div class="item-card-front">
+          <h3>Blender</h3>
+          <p>Kitchen appliance</p>
         </div>
-        <div class="item-card" data-category="Appliances">
-            <h3>Blender</h3>
-            <p>Lightly used kitchen blender</p>
+        <div class="item-card-back">
+          <p>Brand: Philips</p>
+          <p>Power: 500W</p>
+          <p>Condition: Lightly used</p>
         </div>
-        <div class="item-card" data-category="Apparel">
-            <h3>Winter Jacket</h3>
-            <p>Cozy and warm, size M</p>
-        </div>
+      </div>
     </div>
+
+    <!-- Apparel Card -->
+    <div class="item-card fade-in" data-category="Apparel">
+      <div class="item-card-inner">
+        <div class="item-card-front">
+          <h3>Winter Jacket</h3>
+          <p>Cozy & Warm</p>
+        </div>
+        <div class="item-card-back">
+          <p>Size: M</p>
+          <p>Color: Grey</p>
+          <p>Condition: Excellent</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Others Card -->
+    <div class="item-card fade-in" data-category="Others">
+      <div class="item-card-inner">
+        <div class="item-card-front">
+          <h3>Desk Lamp</h3>
+          <p>Decorative</p>
+        </div>
+        <div class="item-card-back">
+          <p>Type: LED</p>
+          <p>Height: 40cm</p>
+          <p>Condition: Good</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- ---------- Donate Section ---------- -->
 <section id="donate" class="section donate-section">
-    <h2 class="section-title">Donate an Item</h2>
-    <!-- 表單提交後跳轉到 success.html -->
-    <form id="donation-form" class="form" action="success.html" method="get">
-        <div class="form-group">
-            <label>Item Name *</label>
-            <input required type="text" name="itemName">
-        </div>
-        <div class="form-group">
-            <label>Category *</label>
-            <select required name="category">
-                <option value="">Select</option>
-                <option value="Books">Books</option>
-                <option value="Appliances">Appliances</option>
-                <option value="Apparel">Apparel</option>
-                <option value="Others">Others</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label>Description *</label>
-            <textarea required rows="4" name="description"></textarea>
-        </div>
-        <button type="submit" class="submit-btn">Donate</button>
-    </form>
-</section>
-
-<section id="about" class="section">
-    <h2 class="section-title">About Us</h2>
-    <p style="text-align:center; max-width:600px; margin:auto; line-height:1.6;">
-        Our platform connects donors with those in need. By sharing unused items, you give them a second life while helping your community. 💛
-    </p>
-</section>
-</main>
-
-<script src="script.js"></script>
-</body>
-</html>
+  <h2 class="section-title">Donate an Item</h2>
+  <form id="donation-form" class="form" action="success.html" method="get">
+    <div class="form-group">
+      <label>Item Name *</label>
+      <input required type="text" name="itemName">
+    </div>
+    <div class="form-group">
+      <label>Category *</label>
+      <select required name="category">
+        <option value="">Select</option>
+        <option value="Books">Books</option>
+        <option value="Appliances">Appliances</option>
 
 
