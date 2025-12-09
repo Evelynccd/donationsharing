@@ -1,43 +1,21 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Submission Successful</title>
-<link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Donation Submitted</title>
+<link rel="stylesheet" href="style.css" />
 </head>
-<body>
-
-<main class="container" style="padding:80px 0;text-align:center;">
-<div style="max-width:640px;margin:0 auto;background:white;padding:34px;border-radius:16px;box-shadow:0 12px 40px rgba(20,30,40,0.12);">
-<svg width="72" height="72" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:14px;">
-<circle cx="12" cy="12" r="12" fill="#A3B5C7" />
-<path d="M7 12.5l2.6 2.6L17 8.7" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-<h1 style="margin:0 0 8px;color:#21303a;">Submission Successful</h1>
-<p class="muted">Thank you — your donation information has been submitted successfully. A confirmation will be sent to the contact you provided.</p>
-
-<div style="margin-top:18px;display:flex;gap:12px;justify-content:center;">
-<a href="index.html" class="btn primary">Back to Home</a>
-<a href="#donate" class="btn ghost">Donate Another Item</a>
+<body class="success-body">
+<div class="success-container">
+<div class="success-box">
+<h1 class="success-title">Thank You! ✨</h1>
+<p class="success-message">
+Your donation information has been successfully submitted.<br>
+We appreciate your kindness and willingness to help others.
+</p>
+<a href="index.html" class="success-btn">Return to Home</a>
 </div>
-
-<p style="margin-top:18px;color:var(--muted);font-size:13px;">You will be redirected to the homepage in <span id="countdown">8</span> seconds.</p>
 </div>
-</main>
-
-<script>
-// Auto-redirect countdown
-(function(){
-var t = 8;
-var el = document.getElementById('countdown');
-var iv = setInterval(function(){
-t--; el.textContent = t;
-if(t<=0){ clearInterval(iv); window.location.href = 'index.html'; }
-},1000);
-})();
-</script>
-
 </body>
 </html>
