@@ -53,7 +53,8 @@
 
 <section id="donate" class="section donate-section">
     <h2 class="section-title">Donate an Item</h2>
-    <form id="donation-form" class="form">
+    <!-- 表單提交後跳轉到 success.html -->
+    <form id="donation-form" class="form" action="success.html" method="get">
         <div class="form-group">
             <label>Item Name *</label>
             <input required type="text" name="itemName">
@@ -74,7 +75,6 @@
         </div>
         <button type="submit" class="submit-btn">Donate</button>
     </form>
-    <div id="success-message">✅ success!!!</div>
 </section>
 
 <section id="about" class="section">
@@ -88,4 +88,5 @@
 <script src="script.js"></script>
 </body>
 </html>
+
 
