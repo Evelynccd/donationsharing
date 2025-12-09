@@ -1,21 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Donation Submitted</title>
-<link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donation Successful</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+/* 單頁專用樣式覆蓋 */
+body, html {
+    height: 100%;
+    margin: 0;
+}
+.success-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    background-color: #b3a69f;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+.success-page h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+.success-page p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+}
+.success-btn {
+    padding: 12px 30px;
+    background-color: #8d8a83;
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.success-btn:hover {
+    background-color: #a39e97;
+}
+</style>
 </head>
-<body class="success-body">
-<div class="success-container">
-<div class="success-box">
-<h1 class="success-title">Thank You! ✨</h1>
-<p class="success-message">
-Your donation information has been successfully submitted.<br>
-We appreciate your kindness and willingness to help others.
-</p>
-<a href="index.html" class="success-btn">Return to Home</a>
-</div>
+<body>
+<div class="success-page">
+    <h1>✅ success!</h1>
+    <p>thank you 💛</p>
+    <a href="index.html" class="success-btn">回到首頁</a>
 </div>
 </body>
 </html>
