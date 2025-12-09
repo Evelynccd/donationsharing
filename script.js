@@ -1,24 +1,29 @@
-const items = [
-{ name: "JavaScript Book", category: "Books", desc: "Like new" },
-{ name: "Rice Cooker", category: "Appliances", desc: "Works well" },
-{ name: "Winter Jacket", category: "Apparel", desc: "Very warm" }
-];
+// --------- 篩選功能 ----------
+const filters = document.querySelectorAll('.filter');
+const items = document.querySelectorAll('.item-card');
 
-function renderItems(filter = "All") {
-const list = document.getElementById("item-list");
-list.innerHTML = "";
-items
-.filter(i => filter === "All" || i.category === filter)
-.forEach(i => {
-const card = document.createElement("div");
-card.className = "card";
-card.innerHTML = `<h3>${i.name}</h3><p>${i.desc}</p><span>${i.category}</span>`;
-list.appendChild(card);
+filters.forEach(filter => {
+    filter.addEventListener('click', () => {
+        document.querySelector('.filter.active').classList.remove('active');
+        filter.classList.add('active');
+        const category = filter.dataset.category;
+        items.forEach(item => {
+            if (category === 'All' || item.dataset.category === category) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
 });
-}
 
-renderItems();
+// --------- 表單提交提示 ----------
+const form = document.getElementById('donation-form');
+const successMessage = document.getElementById('success-message');
 
-const filterBtns = document.querySelectorAll(".filter");
-filterBtns.forEach(btn => {
-btn.add
+form.addEventListener('submit', (e) => {
+    e.preventDefault(); // 阻止跳轉
+    successMessage.style.display = 'block';
+    form.reset();
+    setTimeout(() => successMessage.style.display = 'none', 3000);
+});
