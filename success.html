@@ -1,23 +1,141 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Donation Successful</title>
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<style>
-  body{display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:linear-gradient(135deg,#b3a69f,#ece8e4);color:#fff}
-  .card{background:rgba(255,255,255,0.12);padding:28px;border-radius:12px;text-align:center;max-width:420px}
-  a.btn{margin-top:12px}
-</style>
-</head>
-<body>
-  <div class="card">
-    <h1>✅ 上傳成功</h1>
-    <p>感謝您捐贈物品！已加入平台清單。</p>
-    <a href="index.html" class="btn primary">回到首頁</a>
-  </div>
-</body>
-</html>
+<section id="success" class="success-stories">
+            <div class="container">
+                <h3 class="section-title">Case Study: Our Latest Success</h3>
+                <p class="subtitle">Deep dive into a fully completed project and see the transformative results.</p>
+                
+                <div class="case-study-grid">
+                    <div class="case-study-image">
+                        <img src="https://via.placeholder.com/600x400?text=Completed+Project+Image" alt="Success Story Main Image">
+                    </div>
+                    <div class="case-study-details">
+                        <h4>The 'Bridge to Literacy' Initiative (2024)</h4>
+                        <div class="detail-stat-row">
+                            <div class="detail-stat">
+                                <i class="fas fa-calendar-check"></i>
+                                <span>Project Duration: 12 Months</span>
+                            </div>
+                            <div class="detail-stat">
+                                <i class="fas fa-hand-holding-dollar"></i>
+                                <span>Total Investment: $45,000</span>
+                            </div>
+                        </div>
+                        
+                        <p><strong>Challenge:</strong> A rural community of 500 people lacked access to educational materials beyond the third grade level, severely limiting opportunities for young adults.</p>
+                        
+                        <p><strong>Our Solution:</strong> We partnered with local libraries to establish three new digital learning centers, providing high-speed internet access and over 1,000 educational e-books.</p>
+                        
+                        <div class="results-list">
+                            <h5>Key Results:</h5>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> 95% increase in digital literacy among youth.</li>
+                                <li><i class="fas fa-check-circle"></i> 20 young adults enrolled in remote vocational training programs.</li>
+                                <li><i class="fas fa-check-circle"></i> Long-term mentorship program established with 15 dedicated volunteers.</li>
+                            </ul>
+                        </div>
+                        <a href="#" class="btn btn-primary">Download Full Report</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        ```
 
+### 2. 🎨 `style.css` 更新
+
+將以下 CSS 代碼加入到 `style.css` 文件中，可以放在 `stories` 區塊的樣式之後。
+
+```css
+/* --- Success Stories / Case Study Section --- */
+.success-stories {
+    padding: 80px 0;
+    background-color: white; /* 讓它在灰色 Stories 區塊後顯得突出 */
+}
+
+.case-study-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 圖片和文字並排 */
+    gap: 50px;
+    align-items: center;
+    margin-top: 40px;
+    padding: 30px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.case-study-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.case-study-details h4 {
+    font-size: 1.8em;
+    color: #008080;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.detail-stat-row {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.detail-stat {
+    font-weight: 600;
+    color: #ff9800; /* 行動色 */
+    font-size: 0.95em;
+}
+
+.detail-stat i {
+    margin-right: 8px;
+}
+
+.case-study-details p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.results-list h5 {
+    color: #1a1a1a;
+    font-size: 1.1em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.results-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.results-list ul li {
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.results-list ul li i {
+    color: #008080; /* 主色 */
+    margin-right: 10px;
+}
+
+/* --- Responsive Adjustments for Success Stories --- */
+@media (max-width: 900px) {
+    .case-study-grid {
+        grid-template-columns: 1fr; /* 在平板和手機上改為單欄堆疊 */
+        gap: 30px;
+        padding: 20px;
+    }
+    .case-study-details {
+        order: 2; /* 讓圖片在手機上先顯示 */
+    }
+    .case-study-image {
+        order: 1;
+    }
+    .detail-stat-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
