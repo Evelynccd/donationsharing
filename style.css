@@ -1,561 +1,531 @@
-/* =======================================================
-   Base & Reset
-   ======================================================= */
-:root {
-    --color-primary: #52b788; /* 綠色 */
-    --color-primary-dark: #37926b;
-    --color-secondary: #ffadad; /* 柔和紅色 */
-    --color-background: #f7f7f7;
-    --color-text-dark: #333;
-    --color-text-light: #fff;
-    --color-card-bg: #fff;
-    --color-border: #e0e0e0;
-    --font-family: 'Quicksand', sans-serif;
-}
-
-*, *::before, *::after {
-    box-sizing: border-box;
+/* --- Global & Typography --- */
+body {
+    font-family: 'Poppins', sans-serif; /* Friendly, modern font */
     margin: 0;
     padding: 0;
+    background-color: #f8fcfb; /* Very light, soft background */
+    color: #333;
 }
 
-body {
-    font-family: var(--font-family);
-    line-height: 1.6;
-    color: var(--color-text-dark);
-    background-color: var(--color-background);
-}
-
-a {
-    text-decoration: none;
-    color: var(--color-primary);
-}
-
-main {
-    padding-top: 50px; /* 留出導航欄的位置 */
-}
-
-/* =======================================================
-   Layout Helpers
-   ======================================================= */
-.section {
-    padding: 60px 5%;
+.container {
+    width: 90%;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 20px 0;
 }
 
 .section-title {
-    font-size: 2.5em;
+    font-size: 2.2em;
     font-weight: 700;
+    color: #1a1a1a;
     text-align: center;
-    margin-bottom: 40px;
-    color: var(--color-primary-dark);
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-}
-
-/* =======================================================
-   Buttons & Forms
-   ======================================================= */
-.btn {
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: 600;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    text-align: center;
-    display: inline-block;
-    cursor: pointer;
-}
-
-.btn.primary {
-    background-color: var(--color-primary);
-    color: var(--color-text-light);
-    border: 2px solid var(--color-primary);
-}
-
-.btn.primary:hover {
-    background-color: var(--color-primary-dark);
-    border-color: var(--color-primary-dark);
-}
-
-.btn.outline {
-    background-color: transparent;
-    color: var(--color-primary);
-    border: 2px solid var(--color-primary);
-}
-
-.btn.outline:hover {
-    background-color: var(--color-primary);
-    color: var(--color-text-light);
-}
-
-.btn.full {
-    width: 100%;
-    margin-top: 20px;
-}
-
-/* Form Styles */
-.form {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 30px;
-    background: var(--color-card-bg);
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 600;
-}
-
-.form-group input[type="text"],
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--color-border);
-    border-radius: 5px;
-    font-family: inherit;
-}
-
-.form-row {
-    display: flex;
-    gap: 20px;
-}
-
-.form-row .form-group {
-    flex: 1;
-}
-
-/* =======================================================
-   Header & Navigation
-   ======================================================= */
-.hero {
-    background-color: var(--color-primary);
-    color: var(--color-text-light);
-    padding: 150px 5% 100px;
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 10;
-}
-
-.hero h1 {
-    font-size: 3.5em;
-    font-weight: 700;
     margin-bottom: 10px;
+    padding-top: 20px;
 }
 
 .subtitle {
-    font-size: 1.2em;
-    margin-bottom: 30px;
-    font-weight: 400;
-}
-
-.hero-actions a {
-    margin: 0 10px;
-}
-
-/* Decorative elements */
-.hero-decor {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.15);
-    z-index: 1;
-}
-
-.decor-1 {
-    width: 300px;
-    height: 300px;
-    top: -50px;
-    right: -100px;
-}
-
-.decor-2 {
-    width: 150px;
-    height: 150px;
-    bottom: 20px;
-    left: 20px;
-}
-
-/* NAV Bar */
-.navbar {
-    background-color: var(--color-card-bg);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 15px 5%;
     text-align: center;
+    color: #666;
+    font-size: 1.1em;
+    margin-bottom: 40px;
 }
 
-.navbar ul {
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 50px; /* Rounded buttons for a friendlier look */
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    text-align: center;
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background-color: #008080; /* Teal/Deep Green - Core color (Hope/Growth) */
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #005f5f;
+    box-shadow: 0 4px 10px rgba(0, 128, 128, 0.3);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #008080;
+    border-color: #008080;
+}
+
+.btn-secondary:hover {
+    background-color: #008080;
+    color: white;
+}
+
+.btn-cta { 
+    background-color: #ff9800; /* Orange/Amber - Action color (Urgency/Warmth) */
+    color: white;
+    font-size: 1.2em;
+    padding: 15px 30px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-cta:hover {
+    background-color: #e68900;
+}
+
+/* --- Header & Navigation --- */
+header {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.logo {
+    margin: 0;
+    color: #008080;
+    font-size: 1.8em;
+    font-weight: 700;
+}
+
+header nav ul {
     list-style: none;
     display: flex;
-    justify-content: center;
-    gap: 30px;
+    align-items: center;
 }
 
-.navbar a {
-    color: var(--color-text-dark);
-    font-weight: 600;
+header nav ul li a {
+    color: #444;
+    text-decoration: none;
+    padding: 10px 15px;
     transition: color 0.3s;
 }
 
-.navbar a:hover {
-    color: var(--color-primary);
+header nav ul li a i {
+    margin-right: 5px;
 }
 
-/* Sticky Nav */
-.navbar.sticky {
-    position: fixed;
+header nav ul li a:hover {
+    color: #ff9800;
+}
+
+/* --- Hero Section --- */
+.hero {
+    background: url('https://via.placeholder.com/1400x500?text=Community+Involvement+Background') center/cover no-repeat;
+    color: white;
+    text-align: center;
+    padding: 100px 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Overlay for better text readability */
+.hero::before {
+    content: '';
+    position: absolute;
     top: 0;
-    width: 100%;
-    z-index: 1000;
-    animation: slideDown 0.3s ease-out;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: -1;
 }
 
-@keyframes slideDown {
-    from {
-        transform: translateY(-100%);
-    }
-    to {
-        transform: translateY(0);
-    }
+.hero h2 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* =======================================================
-   Features Section
-   ======================================================= */
-.features-grid {
+.hero p {
+    font-size: 1.3em;
+    margin-bottom: 40px;
+}
+
+.hero-counters {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.counter-item {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #008080;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.count-number {
+    display: block;
+    font-size: 2.5em;
+    font-weight: 700;
+}
+
+/* --- About Us / Focus Grid --- */
+.about-us {
+    padding: 60px 0;
+    background-color: white;
+}
+
+.focus-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    text-align: center;
+    padding: 20px 0;
 }
 
-.feature-card {
-    background: var(--color-card-bg);
+.focus-item {
     padding: 30px;
     border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+    transition: all 0.3s;
 }
 
-.feature-emoji {
+.focus-item:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+.icon-large {
+    font-size: 3em;
+    color: #ff9800;
+    margin-bottom: 15px;
+}
+
+/* --- Donation Action Block (The Core) --- */
+.donate-section {
+    padding: 60px 0;
+    background-color: #e6f7f7; /* Soft blue/green background to highlight action */
+}
+
+.donate-box {
+    max-width: 550px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    text-align: center;
+}
+
+.amount-selection {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    flex-wrap: wrap; 
+}
+
+.amount-btn {
+    flex-basis: 30%; 
+    background-color: #f0f0f0;
+    color: #333;
+    border: none;
+    padding: 12px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.amount-btn.active {
+    background-color: #008080;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 128, 128, 0.3);
+}
+
+#custom-amount {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    margin-left: 10px;
+    text-align: center;
+}
+.current-amount {
+    margin-top: 15px;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #333;
+}
+
+#display-amount {
+    color: #ff9800;
+}
+
+/* --- Projects Section --- */
+.projects {
+    padding: 60px 0;
+}
+
+.project-list {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.project-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    width: 45%; 
+    min-width: 350px;
+    text-align: left;
+    transition: transform 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.project-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.progress-bar-container {
+    background-color: #e9ecef;
+    border-radius: 5px;
+    height: 10px;
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background-color: #008080; 
+    height: 100%;
+    transition: width 0.5s ease-in-out;
+}
+
+.progress-text {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #6c757d;
+}
+
+.project-card .btn {
+    margin-top: 15px;
+}
+
+/* --- Impact Stories/Testimonials --- */
+.stories {
+    padding: 60px 0;
+    background-color: #f0f0f0;
+}
+
+.story-carousel {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.testimonial-card {
+    background-color: white;
+    border-left: 5px solid #ff9800;
+    padding: 30px;
+    max-width: 45%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    font-style: italic;
+}
+
+.testimonial-card footer {
+    margin-top: 15px;
+    font-style: normal;
+    font-weight: 600;
+    color: #008080;
+}
+
+.center-cta {
+    text-align: center;
+}
+
+/* --- Team Section --- */
+.team-section {
+    padding: 60px 0;
+    background-color: white;
+}
+
+.team-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.team-member {
+    text-align: center;
+    width: 250px;
+    padding: 20px;
+    border-radius: 8px;
+    transition: box-shadow 0.3s;
+}
+
+.team-member:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid #008080;
+}
+
+.social-icons a {
+    color: #ff9800;
+    font-size: 1.2em;
+    margin: 0 8px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #008080;
+}
+
+/* --- Volunteer CTA Block --- */
+.volunteer-cta {
+    background-color: #008080;
+    color: white;
+    text-align: center;
+    padding: 50px 0;
+}
+
+.volunteer-cta h3 {
     font-size: 2em;
     margin-bottom: 10px;
 }
 
-.feature-card h3 {
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-
-/* =======================================================
-   Items Section (Controls, Filters, Search)
-   ======================================================= */
-.controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.filters button {
-    background: none;
-    border: 1px solid var(--color-border);
-    padding: 8px 15px;
-    border-radius: 20px;
-    cursor: pointer;
-    margin-right: 8px;
-    transition: background-color 0.3s;
-}
-
-.filters button.active,
-.filters button:hover {
-    background-color: var(--color-primary);
-    color: var(--color-text-light);
-    border-color: var(--color-primary);
-}
-
-.search-wrap input {
-    padding: 10px 15px;
-    border: 1px solid var(--color-border);
-    border-radius: 5px;
-    width: 250px;
-}
-
-/* Item Grid (Placeholders) */
-#item-list {
-    min-height: 300px;
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    padding: 20px;
-    display: grid; /* 確保它是一個 grid 容器 */
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-}
-
-/* =======================================================
-   Donate Section & Image Preview
-   ======================================================= */
-.donate-section {
-    background-color: #e6f7ef; /* 淺綠色背景 */
-}
-
-/* Image Preview Styles (Crucial for the JS to work) */
-.image-preview {
-    margin-top: 10px;
-    border: 2px dashed var(--color-border);
-    background-color: #fff;
-    min-height: 150px; 
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden; 
-}
-
-.preview-image {
-    max-width: 100%; 
-    max-height: 150px; 
-    object-fit: contain; 
-    display: block;
-}
-
-.error-text {
-    color: var(--color-secondary);
-    font-weight: 600;
-}
-
-/* =======================================================
-   Stories & About Section
-   ======================================================= */
-.stories-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-}
-
-.story-card {
-    background: var(--color-card-bg);
-    padding: 20px;
-    border-left: 5px solid var(--color-secondary);
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
-
-.story-card h4 {
-    color: var(--color-primary-dark);
-    margin-bottom: 10px;
-}
-
-.about-content {
-    display: flex;
-    justify-content: space-between;
-    gap: 30px;
-    flex-wrap: wrap;
-}
-
-.about-item {
-    flex: 1;
-    min-width: 250px;
-}
-
-.about-item h3 {
-    color: var(--color-primary);
-    margin-bottom: 10px;
-}
-
-/* =======================================================
-   Footer
-   ======================================================= */
-.footer {
-    background-color: var(--color-text-dark);
-    color: #bbb;
-    padding: 20px 5%;
-    text-align: center;
-}
-
-.footer small {
-    display: block;
-    margin-top: 5px;
-    font-size: 0.8em;
-}
-
-/* =======================================================
-   Success Modal
-   ======================================================= */
-.modal {
-    display: none; /* 初始隱藏 */
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4); /* 半透明黑色背景 */
-    justify-content: center; /* 使用 flex 居中 */
-    align-items: center;
-}
-
-.modal-content {
-    background-color: var(--color-card-bg);
-    padding: 30px;
-    border-radius: 10px;
-    max-width: 400px;
-    width: 90%;
-    text-align: center;
-    position: relative;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.modal-content h3 {
-    color: var(--color-primary-dark);
-    margin-bottom: 15px;
-    font-size: 1.8em;
-}
-
-.modal-content p {
+.volunteer-cta p {
+    font-size: 1.1em;
     margin-bottom: 25px;
 }
 
-.modal-close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    background: none;
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    right: 15px;
+.volunteer-cta .btn-secondary {
+    border-color: white;
+    color: white;
 }
-
-.modal-close:hover,
-.modal-close:focus {
-    color: var(--color-text-dark);
-}
-
-.modal-actions {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-/* =======================================================
-   Animation & Responsiveness
-   ======================================================= */
-
-/* Fade-in Scroll Animation */
-.invisible {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.visible {
-    opacity: 1;
-    transform: translateY(0);
+.volunteer-cta .btn-secondary:hover {
+    background-color: white;
+    color: #008080;
 }
 
 
-/* Media Queries for Responsiveness */
+/* --- Footer --- */
+footer {
+    background-color: #1a1a1a;
+    color: #ccc;
+    padding: 40px 0 20px;
+    font-size: 0.9em;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-col h4 {
+    color: white;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li a {
+    color: #ccc;
+    text-decoration: none;
+    line-height: 1.8;
+}
+
+.footer-col ul li a:hover {
+    color: #ff9800;
+}
+
+.social-footer a {
+    color: white;
+    font-size: 1.2em;
+    margin-right: 15px;
+    transition: color 0.3s;
+}
+
+.social-footer a:hover {
+    color: #ff9800;
+}
+
+.copyright {
+    text-align: center;
+    border-top: 1px solid #333;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 1024px) {
+    .focus-grid, .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .project-card {
+        width: 80%;
+    }
+    .testimonial-card {
+        max-width: 90%;
+    }
+}
+
 @media (max-width: 768px) {
-    .hero h1 {
+    header .container, .hero-counters {
+        flex-direction: column;
+    }
+    header nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    .hero h2 {
         font-size: 2.5em;
     }
-    .navbar ul {
-        flex-wrap: wrap;
-        gap: 15px;
+    .focus-grid, .footer-grid {
+        grid-template-columns: 1fr;
     }
-    .controls {
-        flex-direction: column;
-        align-items: flex-start;
+    .project-card {
+        min-width: 90%;
     }
-    .filters {
-        order: 2; /* 將過濾器移到搜索欄下方 */
+    .testimonial-card {
+        max-width: 100%;
+        margin-bottom: 20px;
     }
-    .search-wrap {
-        order: 1;
-        width: 100%;
-    }
-    .search-wrap input {
-        width: 100%;
-    }
-    .form-row {
-        flex-direction: column;
-        gap: 0;
-    }
-    .about-content {
-        flex-direction: column;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-actions {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-    .hero-actions a {
-        margin: 0;
-    }
-}
-/* --- New Styles for Item Cards (Must be added to style.css) --- */
-.item-card {
-    background: var(--color-card-bg);
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-}
-
-.item-image-wrap {
-    width: 100%;
-    height: 180px; /* 固定高度 */
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #eee;
-}
-
-.item-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* 確保圖片覆蓋整個區域，可能會裁切 */
-}
-
-.item-info {
-    padding: 15px;
-}
-
-.item-info h4 {
-    margin-bottom: 5px;
-    color: var(--color-primary-dark);
-}
-
-.item-description {
-    font-size: 0.9em;
-    color: #555;
-    margin-top: 5px;
 }
 
